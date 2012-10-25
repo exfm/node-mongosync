@@ -26,7 +26,7 @@ leveldb.open("mongosync.db", {create_if_missing: true}, function(err, _db){
 app.get('/flush/:collection', function(req, res){
     var items = [];
     db.iterator({}, function(err, it){
-        it.forRange('song-', 'song-a', function(err, key, value){
+        it.forRange(req.param('collection') + '-', function(err, key, value){
             items.push(JSON.parse(value));
             db.del(key);
         }, function(){
@@ -45,14 +45,13 @@ app.all('/:collection/:id', function(req, res, next){
                 'first_seen': new Date().toString(),
                 'last_seen': new Date().toString(),
                 'hits': 1,
-                'id': Number(req.param('id'))
+                'id': req.param('id')
             };
         }
         else{
             val = JSON.parse(value);
             val.last_seen = new Date().toString();
             val.hits++;
-            val.id = Number(req.param('id'));
         }
         db.put(key, JSON.stringify(val), function(err) {
             res.send(val);
