@@ -1,0 +1,11 @@
+{
+    "name": "mongosync",
+    "version": "0.0.1",
+    "description": "Little you can ping with mongo doc ids for syncing up later.",
+    "author": "Lucas Hrabovsky",
+    "dependencies": {
+        "leveldb": "0.7.1",
+        "express": "3.0.0"
+    },
+    "bin": {}
+}
