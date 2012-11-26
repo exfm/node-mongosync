@@ -7,5 +7,7 @@
         "leveldb": "0.7.1",
         "express": "3.0.0"
     },
-    "bin": {}
+    "scripts": {
+        "start": "node index.js"
+    }
 }
